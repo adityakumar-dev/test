@@ -1,5 +1,7 @@
 {
   "version": 2,
+  "buildCommand": "cd frontend && pnpm install && pnpm run build",
+  "installCommand": "pnpm install",
   "builds": [
     {
       "src": "backend/server.js",
