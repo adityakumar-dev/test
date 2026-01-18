@@ -2,7 +2,7 @@ services:
   - type: web
     name: e-commerce-store
     env: node
-    buildCommand: pnpm install && pnpm install --prefix frontend && pnpm run build --prefix frontend
+    buildCommand: pnpm install && cd frontend && pnpm install && pnpm run build
     startCommand: node backend/server.js
     envVars:
       - key: NODE_ENV
