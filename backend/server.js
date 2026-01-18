@@ -30,10 +30,16 @@ app.use("/api/payments", paymentRoutes);
 app.use("/api/analytics", analyticsRoutes);
 
 if (process.env.NODE_ENV === "production") {
-	app.use(express.static(path.join(__dirname, "/frontend/dist")));
+	const frontendDistPath = path.join(__dirname, "/frontend/dist");
+	console.log("Serving static files from:", frontendDistPath);
+	console.log("NODE_ENV:", process.env.NODE_ENV);
+	
+	app.use(express.static(frontendDistPath));
 
 	app.get("*", (req, res) => {
-		res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+		const indexPath = path.resolve(__dirname, "frontend", "dist", "index.html");
+		console.log("Serving index.html from:", indexPath);
+		res.sendFile(indexPath);
 	});
 }
 
