@@ -1,17 +1,18 @@
 {
   "version": 2,
-  "buildCommand": "cd frontend && pnpm install && pnpm run build",
+  "buildCommand": "pnpm install && cd frontend && pnpm install && pnpm run build",
+  "outputDirectory": "frontend/dist",
   "installCommand": "pnpm install",
-  "builds": [
-    {
-      "src": "backend/server.js",
-      "use": "@vercel/node"
+  "functions": {
+    "api/index.js": {
+      "memory": 1024,
+      "maxDuration": 10
     }
-  ],
-  "routes": [
+  },
+  "rewrites": [
     {
-      "src": "/(.*)",
-      "dest": "backend/server.js"
+      "source": "/api/:path*",
+      "destination": "/api"
     }
   ]
 }
